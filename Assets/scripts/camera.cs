@@ -15,23 +15,31 @@ public class camera : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        SetCameraPosition();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButton(1)) // kamera porusza się gdy wcisniety jest prawy klawisz myszy
+            SetCameraPosition();
 
-        float deltaX= Input.GetAxis("Mouse X"); // aktualna pozycja kursora
+    }
+
+    void SetCameraPosition()
+    {
+        float deltaX = Input.GetAxis("Mouse X"); // aktualna pozycja kursora
         float deltaY = Input.GetAxis("Mouse Y");
 
-        AxisX += deltaY * speed;
+        AxisX += deltaY * speed; // przyspieszamu ruch kamery
         AxisY += deltaX * speed;
 
 
-        var rotation = Quaternion.Euler(AxisX, AxisY, 0);
-        transform.position = rotation * Vector3.up * distance;
+        AxisX = Mathf.Clamp(AxisX, -85f, 0f);
 
-        transform.LookAt(Vector3.zero);
+        var rotation = Quaternion.Euler(AxisX, AxisY, 0);
+        transform.position = rotation * Vector3.forward * distance;
+
+        transform.LookAt(Vector3.up*5f); //kamera patrzy na punkt skierowany do góry powyzej o 5f
     }
 }
