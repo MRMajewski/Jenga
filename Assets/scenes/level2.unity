@@ -789,6 +789,11 @@ Prefab:
       propertyPath: NextLevelName
       value: level3
       objectReference: {fileID: 0}
+    - target: {fileID: 114708332262188604, guid: ff9d057a7b1a87e43a16311ace308dda,
+        type: 2}
+      propertyPath: SameLevelName
+      value: level2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff9d057a7b1a87e43a16311ace308dda, type: 2}
   m_IsPrefabParent: 0

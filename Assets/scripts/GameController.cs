@@ -13,6 +13,8 @@ public class GameController : MonoBehaviour {
 
     public string NextLevelName;
 
+    public string SameLevelName;
+
     int NumberOfSpecialBlocksAtBeginning;
 
 	// Use this for initialization
@@ -81,7 +83,7 @@ public class GameController : MonoBehaviour {
 
         if (won)
         {
-            for(int i=5;i>0;i--)
+            for (int i = 5; i > 0; i--)
             {
                 TextComponent.text = i.ToString();
                 yield return new WaitForSeconds(1f);
@@ -90,6 +92,13 @@ public class GameController : MonoBehaviour {
             if (NumberOfSpecialBlocksAtBeginning != CountBlocks(special: true))
                 won = false;
         }
+
+        else
+        {
+         
+            SceneManager.LoadScene(SameLevelName);
+        }
+
 
         TextComponent.text = won ? "Wygrałeś!" : "Przegrałeś...";
 
@@ -105,4 +114,11 @@ public class GameController : MonoBehaviour {
         }
 
     }
+
+    IEnumerator restartGame()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(SameLevelName);
+    }
+
 }
